@@ -1,0 +1,23 @@
+{
+  "name": "levi9-study",
+  "version": "1.0.0",
+  "description": "automated software testing with Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "testing",
+    "cypress"
+  ],
+  "author": "Sviatoslav",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^10.11.0",
+    "prettier": "^2.7.1"
+  },
+  "devDependencies": {
+    "cypress-iframe": "^1.0.1",
+    "typescript": "^4.8.4"
+  }
+}
