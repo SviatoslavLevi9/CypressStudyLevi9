@@ -20,7 +20,7 @@ describe('Our first suite', ()=>{
 it('first test', ()=>{
 
     
-    cy.contains('Inloggen').click()
+    cy.contains('Inloggen').click() // will find the text and click on it
 
 
 
@@ -52,8 +52,24 @@ it('first test', ()=>{
     cy.get('input[placeholder="gebruiker@emailadres.nl"]#mui-11.MuiOutlinedInput-input')
 
     //The most recommended way by Cypress
-    cy.get('[data-cy="name of your own tag"]')
+    //cy.get('[data-cy="name of your own tag"]')
+
+    //by element inside element (el el)
+   
+
+    // by -	child element (>)
+    cy.get('nav.MuiGrid-root > div').children().should('have.length', 6) //find element with 6 childrens
+
+    //by -	siblings (+)
+    cy.get('div.MuiGrid-grid-xs-9').siblings 
+    //питання чому такий локатор як в коді показує 13 хоча він бльш точний, h5.MuiTypography-root а такий показує 6 хоча він не такйи точний як попередній
+
+    // by data test id attribute
+    cy.get('[data-testid="nextButton"]')
 })
+
+    
+
 
 
 })
