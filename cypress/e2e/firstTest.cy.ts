@@ -68,24 +68,20 @@ it('first test', ()=>{
     cy.get('[data-testid="nextButton"]')
 })
 
-it.only('Second test', ()=>{
+// it.only('Second test', ()=>{
     
-    cy.contains('Inloggen').click()
-    cy.contains('Inloggen')
-    //cy.contains('[class="MuiTypography-root]','Inloggen')
-    cy.get('[name="email"]')
-        .parents('form')
-        .find('button')
-        .should('contain', 'Inloggen')
-        .parents('form')
-        .find('[href="/forgot-password"]')
-        .click()
-    cy.contains('div','Inloggen')
+//     cy.contains('Inloggen').click()
+//     cy.contains('Inloggen')
+//     //cy.contains('[class="MuiTypography-root]','Inloggen')
+//     cy.get('[name="email"]')
+//         .parents('form')
+//         .find('button')
+//         .should('contain', 'Inloggen')
+//         .parents('form')
+//         .find('[href="/forgot-password"]')
+//         .click()
+//     cy.contains('div','Inloggen')
 
 })
 
     
-
-
-
-})

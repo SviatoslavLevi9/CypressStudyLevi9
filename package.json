@@ -4,7 +4,8 @@
   "description": "automated software testing with Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress open",
+    "cli-run": "cypress run"
   },
   "keywords": [
     "testing",
