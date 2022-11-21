@@ -53,21 +53,24 @@ describe('Browser actions', ()=>{
 
     it.only('Task 4',()=>{
         cy.visit('https://dpg-ads-test.selfservice-advertising.dpgmedia.cloud/')
+       //1)
         cy.get('form').within(($form)=>{
         
             cy.get('input[name="Achternaam"]')
             cy.get('input[name="Bedrijf"]')
             })
+            //2 
             //cy.contains('img').eq(2)
+            //3
             cy.contains('[data-testid="nextButton"]','Maak direct een advertentie')
+            cy.contains('div','Samen groeien met deze betrouwbare merken').siblings('.MuiGrid-grid-xs-12')
+            //4
             cy.get('div.MuiGrid-root').parents()
             cy.get('div.MuiGrid-root').parent()
             cy.get('div.MuiGrid-root').children
             cy.get('.MuiGrid-container').parent('div').find('[alt="merk logo 3 bd"]')
             cy.get('.MuiGrid-container').parents()
             cy.get('.MuiGrid-container').parent('div')
-            cy.contains('div','Samen groeien met deze betrouwbare merken').siblings('.MuiGrid-grid-xs-12')
-
 
     })
 
