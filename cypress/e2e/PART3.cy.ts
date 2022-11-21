@@ -19,9 +19,9 @@ describe('Browser actions', ()=>{
         cy.iframe('[title="SP Consent Message"]').find('button:contains("Akkoord")').click();
     })
 
-    it('Sould input pass and log / make assertion',()=>{
-        cy.contains('Inloggen').click()
-        cy.get('form').within(($form)=>{
+    it('Task 2 + assert',()=>{
+        cy.visit('https://dpg-ads-test.selfservice-advertising.dpgmedia.cloud/auth')
+        cy.get('form', {timeout:5000}).within(($form)=>{
 
             cy.get('input[name="email"]').type('s.yurkiv@gmail.com')
             cy.get('input[name="password"]').type('NewPass')
@@ -40,7 +40,7 @@ describe('Browser actions', ()=>{
 
     })
 
-    it.only('Parents, Parent, Siblings, find', ()=>{
+    it('Task3', ()=>{
         cy.visit('https://dpg-ads-test.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type')
         cy.get('div.MuiFormGroup-root').parents()
         cy.get('div.MuiFormGroup-root').parent()
@@ -50,4 +50,26 @@ describe('Browser actions', ()=>{
         cy.get('.MuiFormGroup-root').find('label')       
 
     })
+
+    it.only('Task 4',()=>{
+        cy.visit('https://dpg-ads-test.selfservice-advertising.dpgmedia.cloud/')
+        cy.get('form').within(($form)=>{
+        
+            cy.get('input[name="Achternaam"]')
+            cy.get('input[name="Bedrijf"]')
+            })
+            //cy.contains('img').eq(2)
+            cy.contains('[data-testid="nextButton"]','Maak direct een advertentie')
+            cy.get('div.MuiGrid-root').parents()
+            cy.get('div.MuiGrid-root').parent()
+            cy.get('div.MuiGrid-root').children
+            cy.get('.MuiGrid-container').parent('div').find('[alt="merk logo 3 bd"]')
+            cy.get('.MuiGrid-container').parents()
+            cy.get('.MuiGrid-container').parent('div')
+            cy.contains('div','Samen groeien met deze betrouwbare merken').siblings('.MuiGrid-grid-xs-12')
+
+
+    })
+
+
 });
