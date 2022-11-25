@@ -186,14 +186,14 @@ describe('Browser actions', () => {
         })
     })
 
-    it('expect 5', ()=>{
-        cy.get('[data-testid="contactForm"]').then(methodPOST =>{
+    it('expect 5', () => {
+        cy.get('[data-testid="contactForm"]').then(methodPOST => {
             expect(methodPOST).to.have.attr('method', 'post')
         })
     })
 
-    it.only('expect 6', ()=>{
-        cy.contains('h3', 'E-mailadres').then(colorRgb =>{
+    it.only('expect 6', () => {
+        cy.contains('h3', 'E-mailadres').then(colorRgb => {
             expect(colorRgb).to.have.css('color', 'rgb(0, 0, 0)')
         })
     })
