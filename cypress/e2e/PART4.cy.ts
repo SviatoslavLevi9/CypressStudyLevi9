@@ -52,6 +52,9 @@ describe('Browser actions', () => {
     })
 
 
+    // INTERACTING WITH ELEMENTS
+
+
     it('Interacting with elements: click ', () => {
         cy.contains('Maak direct een advertentie').click()
 
