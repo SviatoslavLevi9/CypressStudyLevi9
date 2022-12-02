@@ -72,38 +72,38 @@ describe('Browser actions', () => {
 
     })
 
-    
+
     it('Interacting with elements: Rightclick ', () => {
-        
+
         cy.get('div').find('[alt="merk logo 5 tu"]').eq(0).rightclick()
 
 
     })
 
-    it('Interacting with elements: type ', ()=>{
+    it('Interacting with elements: type ', () => {
         cy.get('div').find('h5[data-text="inloggen"]').click()
         cy.get('input[name="email"]').type('Hello World')
     })
 
-    it('Interacting with elements: clear ', ()=>{
+    it('Interacting with elements: clear ', () => {
         cy.get('div').find('h5[data-text="inloggen"]').click()
         cy.get('input[name="email"]').type('Hello World').clear()
     })
 
-    it('Interacting with elements: check ', ()=>{
+    it('Interacting with elements: check ', () => {
         cy.get('div').find('input[type="checkbox"]').check()
         cy.get('div').find('button[data-text="maak-een-advertentie"]').eq(0).click()
         cy.get('div').find('input[value="attention"]').check()
         cy.get('div').find('input[value="prepared"]').check()
 
     })
-    it('Interacting with elements: Uncheck ', ()=>{
+    it('Interacting with elements: Uncheck ', () => {
         cy.get('div').find('input[type="checkbox"]').check()
         cy.get('div').find('input[type="checkbox"]').uncheck()
 
     })
 
-    it('Interacting with elements: Select', ()=>{
+    it('Interacting with elements: Select', () => {
         cy.visit('https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/')
         cy.get('div').find('h5[data-text="inloggen"]').click()
         cy.get('input[name="email"]').type('demoadmin@yopmail.com')
@@ -112,30 +112,43 @@ describe('Browser actions', () => {
         cy.get('div').find('div[role="button"]').click()
         //we don't have any select class in the site(or I didn't find it)
         //cy.get('div').find('div[role="menu"]').select('role="menuitem"').should('have.value', 'Je gegevens')
+    })
+
+    // I will use the stage env 
+    it('Task: use .click(), .check(), .uncheck(), .select(), .clear(), .type(), and work with table: ', () => {
+        cy.visit('https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/')
+        cy.get('div').find('h5[data-text="inloggen"]').click()
+        cy.wait(1000)
+
+        cy.get('form').within(($form) => {
+            cy.get('input[name="email"]').type('deemoadmin@yopmail.com')
+            cy.get('input[name="password"]').type('Sava19921!')
+            cy.get('button[type="submit"]').click()
+            cy.contains('Incorrecte e-mailadres of wachtwoord.').should('be.visible')
+            cy.get('input[name="email"]').clear().type('demoadmin@yopmail.com')
+            cy.get('input[name="password"]').clear().type('Sava1992!')
         })
 
-        // I will use the stage env 
-        it.only('Task: use .click(), .check(), .uncheck(), .select(), .clear(), .type(), and work with table: ', ()=>{
-            cy.visit('https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/')
-            // cy.get('div').find('h5[data-text="inloggen"]').click()
-            // cy.get('input[name="email"]').type('deemoadmin@yopmail.com')
-            // cy.get('input[name="password"]').type('Sava19921!')
-            // cy.get('div').find('button[type="submit"]').click()
-            // cy.contains('Incorrecte e-mailadres of wachtwoord.').should('be.visible')
-            // cy.get('input[name="email"]').clear().type('demoadmin@yopmail.com')
-            // cy.get('input[name="password"]').clear().type('Sava1992!')
-            // cy.get('div').find('button[type="submit"]').click()
-            // cy.get('div').find('div[role="button"]').click()
-            // cy.get('div[role="menuitem"]').find('h5').should('contain','Je gegevens').eq(0).click()
-            // cy.url().should('contain', 'https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/account-details')
-            // cy.get('button[data-testid="backButton"]').should('contain','Terug').click()
-            // cy.get('div').find('[role="row"]').should('have.length', 11)
-            cy.wait(1000)
-            cy.get('.MuiSelect-select',{timeout:5000}).click()
-            cy.get('ul').find('li[data-value="30"]').click()
-            cy.get('div').find('[role="row"]').should('have.length', 31)
-            })
-            
+        cy.get('div').find('button[type="submit"]').click()
+        cy.get('div').find('div[role="button"]').click()
+        cy.get('div[role="menuitem"]').find('h5').should('contain', 'Je gegevens').eq(0).click()
+        cy.url().should('contain', 'https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/account-details')
+        cy.get('button[data-testid="backButton"]').should('contain', 'Terug').click()
+        cy.get('div').find('[role="row"]').should('have.length', 11)
+        cy.wait(1000)
+        cy.get('.MuiSelect-select', {
+            timeout: 5000
+        }).click()
+        cy.get('ul').find('li[data-value="30"]').click()
+        cy.get('div').find('[role="row"]').should('have.length', 31)
+    })
+
+    it.only('Trigger', ()=>{
+        cy.visit('https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/advertisers/07311119-279f-4dfc-8b63-496d6fada798/performance-dashboard/844')
+        cy.get('g').find('circle[r="4"]').eq(1).trigger('mouseover')
+        cy.get('div').find('[role="dialog"]').should('be.visible')
+    })
 
 
-        })
+
+})
