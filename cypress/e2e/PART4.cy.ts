@@ -142,11 +142,14 @@ describe('Browser actions', () => {
         cy.get('ul').find('li[data-value="30"]').click()
         cy.get('div').find('[role="row"]').should('have.length', 31)
     })
-
+            // You should run test above first
     it.only('Trigger', ()=>{
         cy.visit('https://dpg-ads-stage.selfservice-advertising.dpgmedia.cloud/advertisers/07311119-279f-4dfc-8b63-496d6fada798/performance-dashboard/844')
-        cy.get('g').find('circle[r="4"]').eq(1).trigger('mouseover')
-        cy.get('div').find('[role="dialog"]').should('be.visible')
+        cy.wait(1000)
+        cy.get('g').find('circle[r="4"]').eq(1).trigger('mouseover').pause()
+        debugger
+        cy.get('div').find('[role="dialog"]').should('be.visible').debug()
+        //cy.get('button[data-testid="backButton"]')
     })
 
 
