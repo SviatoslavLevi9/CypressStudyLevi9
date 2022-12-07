@@ -81,4 +81,4 @@ console.log(summ2);
  //Task 9
  let myName = 'Sviat';
  let myCity = 'Lviv';
- console.log('My name is ' + myName +'.' + ' My favorite city is ' + myCity + '.');
+ console.log(`My name is  ${myName}.`+ ` My favorite city is ${myCity}`);
