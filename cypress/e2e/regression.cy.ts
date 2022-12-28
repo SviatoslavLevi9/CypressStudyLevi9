@@ -39,13 +39,13 @@ describe('Browser actions', () => {
         const imageLogoFile = 'Logo_wood.jpg'
         const imageNativeFile = 'WoodmanCrafts_2000.jpg'
 
-        cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
+        cy.visit('https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/')
         cy.get('button[type="submit"]').should('contain', 'Maak een advertentie').eq(0).click()
-        cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type')
+        cy.url().should('contain', 'https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type')
         cy.get('input[value="attention"]').check()
-        cy.get('div[role="radiogroup"]').find('[value="prepared"]').check()
+        cy.get('div[role="radiogroup"]').find('[value="prepared"]').check().wait(2000)
         cy.get('button[type="submit"]').click()
-        cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/template')
+        //cy.url().should('contain', 'https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type?goal=attention&templateType=prepared')
         cy.get('input[placeholder="https://zomercampagne.nl"]').type('https://www.dpgmedia.nl/adverteren')
 
 

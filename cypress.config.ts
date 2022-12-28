@@ -18,7 +18,7 @@ export default defineConfig({
 
     },
 
-    baseUrl: 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/',
+    baseUrl: 'https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/',
 
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
 
