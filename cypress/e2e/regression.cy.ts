@@ -27,7 +27,6 @@ describe('Browser actions', () => {
         cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/auth')
         cy.login('demoadmin@yopmail.com', 'Sava1992!')
         //`user-${Math.floor(Math.random() * 1000)}@mail.com`
-        cy.wait(2000)
         cy.get('div').find('[tabindex="0"]').should('contain', 'Je account').eq(0).click()
         cy.get('div').find('[role="button"]').should('contain', 'Uitloggen').eq(1).click()
         cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
@@ -39,13 +38,13 @@ describe('Browser actions', () => {
         const imageLogoFile = 'Logo_wood.jpg'
         const imageNativeFile = 'WoodmanCrafts_2000.jpg'
 
-        cy.visit('https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/')
+        cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
         cy.get('button[type="submit"]').should('contain', 'Maak een advertentie').eq(0).click()
-        cy.url().should('contain', 'https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type')
+        cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type')
         cy.get('input[value="attention"]').check()
         cy.get('div[role="radiogroup"]').find('[value="prepared"]').check().wait(2000)
         cy.get('button[type="submit"]').click()
-        //cy.url().should('contain', 'https://dpg-ads-test-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type?goal=attention&templateType=prepared')
+        cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/template')
         cy.get('input[placeholder="https://zomercampagne.nl"]').type('https://www.dpgmedia.nl/adverteren')
 
 
@@ -56,8 +55,16 @@ describe('Browser actions', () => {
         cy.get('textarea[placeholder="De tekst van je advertentie"]').type('Hello World')
         cy.get('input[name="callToAction"]').type('New Call to Action')
         cy.get('input[name="name"]').type('New TEST name')
-
         cy.get('button[type="submit"]').click()
+
+        cy.get('input[name="location"]').type('Amsterdam')
+        cy.get('div').find('.pac-item').should('contain', 'Amsterdam').eq(0).click()
+        cy.get('div[role="radiogroup"]').find('[name="gender"]').eq(1).check()
+        cy.get('div').find('input[name="age"]').eq(1).check()
+        cy.get('div').find('[data-testid="datePicker-endDate"]').click()
+
+
+
 
     })
 })
