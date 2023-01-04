@@ -38,6 +38,9 @@ describe('Browser actions', () => {
         const imageLogoFile = 'Logo_wood.jpg'
         const imageNativeFile = 'WoodmanCrafts_2000.jpg'
 
+        let name = 'NewUserName'
+        let email = 'NRU11111@yopmail.com'
+
         cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
         cy.get('button[type="submit"]').should('contain', 'Maak een advertentie').eq(0).click()
         cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/direct/wizard/goal-and-template-type')
@@ -71,8 +74,8 @@ describe('Browser actions', () => {
         cy.get('form').find('h2').eq(0).should('have.text', 'Inloggen')
         cy.get('form').find('h2').eq(1).should('have.text', 'Nieuw bij Direct?')
         // You should change your email and user name because with the existing email, this test will fall
-        cy.get('input[name="name"]').eq(0).type('NewRegressionUser1')
-        cy.get('input[name="email"]').eq(1).type('NRU1@yopmail.com')
+        cy.get('input[name="name"]').eq(0).type(name)
+        cy.get('input[name="email"]').eq(1).type(email)
         
         cy.get('button[type="submit"]').eq(1).should('contain','Creeër een account').click()
 
@@ -86,7 +89,10 @@ describe('Browser actions', () => {
         cy.get('ul').find('[data-value="ideal_REVOLT21"]').click()
         cy.get('input[name="conditions"]').check()
         cy.get('button[type="submit"]').should('contain','Creeër een account').click()
-        cy.wait(50000)
+        cy.wait(30000)
+        cy.get('input[value="paid"]').check()
+        cy.get('button').should('contain', 'Continue').eq(0).click()
+        cy.wait(20000)
 
 
 
