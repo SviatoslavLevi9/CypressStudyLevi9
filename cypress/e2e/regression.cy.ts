@@ -9,6 +9,10 @@ import {
 } from "multiformats/cid"
 import 'cypress-file-upload'
 
+const name = 'NewUserName'
+const email = 'NRU111111@yopmail.com'
+
+
 describe('Browser actions', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
@@ -34,12 +38,12 @@ describe('Browser actions', () => {
 
     })
 
-    it.only('New User Login', () => {
+
+    it('New User Login', () => {
         const imageLogoFile = 'Logo_wood.jpg'
         const imageNativeFile = 'WoodmanCrafts_2000.jpg'
 
-        let name = 'NewUserName'
-        let email = 'NRU11111@yopmail.com'
+
 
         cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
         cy.get('button[type="submit"]').should('contain', 'Maak een advertentie').eq(0).click()
@@ -65,7 +69,9 @@ describe('Browser actions', () => {
         cy.get('div[role="radiogroup"]').find('[name="gender"]').eq(1).check()
         cy.get('div').find('input[name="age"]').eq(1).check()
         cy.get('div').find('[data-testid="datePicker-endDate"]').click()
-        cy.get('.DayPicker-Month', {timeout: 15000}).should('be.visible')
+        cy.get('.DayPicker-Month', {
+            timeout: 15000
+        }).should('be.visible')
         cy.get('div').find('[aria-selected="true"]').click()
         cy.get('div').find('[name="budgetType"]').eq(1).check()
         cy.get('button[type="submit"]').click()
@@ -73,11 +79,13 @@ describe('Browser actions', () => {
         cy.get('button[type="submit"]').click()
         cy.get('form').find('h2').eq(0).should('have.text', 'Inloggen')
         cy.get('form').find('h2').eq(1).should('have.text', 'Nieuw bij Direct?')
-        // You should change your email and user name because with the existing email, this test will fall
+
+        // You should change your email because with the existing email, this test will fall
+
         cy.get('input[name="name"]').eq(0).type(name)
         cy.get('input[name="email"]').eq(1).type(email)
-        
-        cy.get('button[type="submit"]').eq(1).should('contain','Creeër een account').click()
+
+        cy.get('button[type="submit"]').eq(1).should('contain', 'Creeër een account').click()
 
 
         cy.get('input[name="companyName"]').type('Levi9')
@@ -88,19 +96,25 @@ describe('Browser actions', () => {
         cy.get('div').find('[aria-haspopup="listbox"]').click()
         cy.get('ul').find('[data-value="ideal_REVOLT21"]').click()
         cy.get('input[name="conditions"]').check()
-        cy.get('button[type="submit"]').should('contain','Creeër een account').click()
+        cy.get('button[type="submit"]').should('contain', 'Creeër een account').click()
         cy.wait(30000)
         cy.get('input[value="paid"]').check()
         cy.get('button').should('contain', 'Continue').eq(0).click()
         cy.wait(20000)
 
 
+    })
 
-
-
-
-
-
+    it('Login by a New User', () => {
+        cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/auth')
+        cy.login(email, 'Sava1992!')
 
     })
+
+
+
+
+
+
+
 })
