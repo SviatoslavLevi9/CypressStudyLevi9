@@ -10,7 +10,7 @@ import {
 import 'cypress-file-upload'
 
 const name = 'NewUserName'
-const email = 'testuser111@yopmail.com' 
+const email = 'testuser111@yopmail.com'
 //`NRU-${Date.now()}@yopmail.com`
 const pass = 'Sava1992!'
 
@@ -86,7 +86,7 @@ describe('Browser actions', () => {
 
         cy.get('input[name="name"]').eq(0).type(name)
         cy.get('input[name="email"]').eq(1).type(email)
-        
+
 
         cy.get('button[type="submit"]').eq(1).should('contain', 'Creeër een account').click()
 
