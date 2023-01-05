@@ -10,7 +10,9 @@ import {
 import 'cypress-file-upload'
 
 const name = 'NewUserName'
-const email = 'NRU111111@yopmail.com'
+const email = 'testuser111@yopmail.com' 
+//`NRU-${Date.now()}@yopmail.com`
+const pass = 'Sava1992!'
 
 
 describe('Browser actions', () => {
@@ -84,6 +86,7 @@ describe('Browser actions', () => {
 
         cy.get('input[name="name"]').eq(0).type(name)
         cy.get('input[name="email"]').eq(1).type(email)
+        
 
         cy.get('button[type="submit"]').eq(1).should('contain', 'Creeër een account').click()
 
@@ -105,9 +108,9 @@ describe('Browser actions', () => {
 
     })
 
-    it('Login by a New User', () => {
+    it.only('Login by a New User', () => {
         cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/auth')
-        cy.login(email, 'Sava1992!')
+        cy.login(email, pass)
 
     })
 
