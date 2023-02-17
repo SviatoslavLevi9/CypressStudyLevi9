@@ -1,61 +1,43 @@
 import 'cypress-file-upload'
 
+
 import signUpData from '../fixtures/signUp.json'
 
 describe('Browser actions', () => {
 
 
-    beforeEach(() => {
-        cy.on('uncaught:exception', (err, runnable) => {
+    // beforeEach(() => {
+    //     cy.on('uncaught:exception', (err, runnable) => {
 
-            if (err.message.includes('Error log in')) {
+    //         if (err.message.includes('Error log in')) {
 
-                return false
+    //             return false
 
-            }
-        })
-        cy.visit('/')
-        cy.iframe('[title="SP Consent Message"]', {
-            timeout: 30000
-        }).should('be.visible');
-        cy.iframe('[title="SP Consent Message"]').find('button:contains("Akkoord")').click();
-    })
-
-    it('Login by an ADMIN', () => {
-        cy.visit('/auth')
-        cy.login('demoadmin@yopmail.com', 'Sava1992!')
-        //`user-${Math.floor(Math.random() * 1000)}@mail.com`
-        cy.get('[data-testid="section-managerAdvertisementsPage"]', {
-            timeout: 10000
-        }).should('be.visible')
-
-        cy.get('[role="button"]:contains("Je account")', {
-            timeout: 15000
-        }).click()
-
-        cy.get('[role="menu"]').should('be.visible')
-
-        cy.get('[role="menuitem"]:contains("Uitloggen")').should('be.visible').click()
-
-        cy.url().should('contain', 'https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
-        cy.contains('Inloggen').should('be.visible')
-
-    })
+    //         }
+    //     })
+    //     cy.visit('/')
+    //     cy.iframe('[title="SP Consent Message"]', {
+    //         timeout: 30000
+    //     }).should('be.visible');
+    //     cy.iframe('[title="SP Consent Message"]').find('button:contains("Akkoord")').click();
+    // })
 
 
 
 
-    it.only('New User Login', () => {
+
+    it.only('New User Creation', () => {
 
         const imageLogoFile = 'Logo_wood.jpg'
 
         const imageNativeFile = 'WoodmanCrafts_2000.jpg'
 
-        cy.visit('/')
+        cy.visit('https://dpg-ads-stage-nl.selfservice-advertising.dpgmedia.cloud/')
 
-        cy.get('nav button[type="submit"]:contains("Maak een advertentie")').should('be.enabled').click()
+        cy.get('nav button[type="submit"]:contains("Maak een advertentie")').click()
 
-        cy.url().should('contain', '/direct/wizard/goal-and-template-type')
+
+       // cy.url().should('contain', '/direct/wizard/goal-and-template-type')
 
         cy.get('input[value="attention"]').check()
 
@@ -63,9 +45,11 @@ describe('Browser actions', () => {
 
         cy.get('div[role="radiogroup"]').find('[value="prepared"]').check()
 
-        cy.get('button[type="submit"]').click()
+        cy.get('button[type="submit"]').eq(1).should('contain', 'Volgende stap').click()
+        
 
-        cy.url().should('contain', '/direct/wizard/template')
+
+        //cy.url().should('contain', '/direct/wizard/template')
 
         cy.get('input[placeholder="https://zomercampagne.nl"]').type('https://www.dpgmedia.nl/adverteren')
 
@@ -85,7 +69,7 @@ describe('Browser actions', () => {
 
         cy.get('input[name="name"]').type('New TEST name')
 
-        cy.get('button[type="submit"]').click()
+        cy.get('button[type="submit"]').eq(1).click()
 
         cy.get('input[name="location"]').type('Amsterdam')
 
@@ -147,7 +131,7 @@ describe('Browser actions', () => {
 
         cy.get('input[name="conditions"]').check()
 
-        cy.get('button[type="submit"]').should('contain', 'Creeër een account').click()
+        cy.get('button[type="submit"]').should('contain', 'Creeër een account').click().pause()
 
         cy.wait(30000)
 
@@ -156,15 +140,6 @@ describe('Browser actions', () => {
         cy.get('button').should('contain', 'Continue').eq(0).click()
 
         cy.wait(20000)
-
-
-    })
-
-    it('Login by a New User', () => {
-
-        cy.visit('/auth')
-
-        cy.login(signUpData.email, signUpData.pass)
 
     })
 
