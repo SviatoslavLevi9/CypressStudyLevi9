@@ -22,6 +22,14 @@
     "cypress": "^12.3.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-iframe": "^1.0.1",
-    "typescript": "^4.8.4"
-  }
+    "typescript": "^4.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SviatoslavLevi9/CypressStudyLevi9.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SviatoslavLevi9/CypressStudyLevi9/issues"
+  },
+  "homepage": "https://github.com/SviatoslavLevi9/CypressStudyLevi9#readme"
 }
