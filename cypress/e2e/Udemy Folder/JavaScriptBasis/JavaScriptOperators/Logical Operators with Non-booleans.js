@@ -41,7 +41,7 @@ console.log('Refused',applicationRefused)
 // Short-circuting
 console.log(false || 1 || 2)
 
-let userColor = 'Red'
+let userColor = 'Red' //change to undefined
 let defaultColor = 'Blue'
 let currentColor = userColor || defaultColor
 console.log(currentColor)
